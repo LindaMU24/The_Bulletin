@@ -27,8 +27,8 @@ public class ChannelController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Channel> getChannel(@PathVariable Long channelId) {
-        Channel channel = channelService.getChannelById(channelId);
+    public ResponseEntity<Channel> getChannel(@PathVariable Long id) {
+        Channel channel = channelService.getChannelById(id);
         if (channel != null) {
             return ResponseEntity.ok(channel);
         } else {
@@ -36,7 +36,7 @@ public class ChannelController {
         }
     }
     @DeleteMapping("/{id}")
-    public void deleteChannelById(@PathVariable Long channelId) {
-        channelService.deleteChannel(channelId);
+    public void deleteChannelById(@PathVariable Long id) {
+        channelService.deleteChannel(id);
     }
 }

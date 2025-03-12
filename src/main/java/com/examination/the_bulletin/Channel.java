@@ -43,7 +43,6 @@ public class Channel {
     public void setTitle(String title) {
         this.title = title;
     }
-
     public List<Post> getPosts() {
         return posts;
     }
