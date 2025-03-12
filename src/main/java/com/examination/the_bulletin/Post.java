@@ -1,6 +1,10 @@
 package com.examination.the_bulletin;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class Post {
@@ -9,7 +13,11 @@ public class Post {
     @GeneratedValue
     private Long id;
 
+    @NotBlank(message = "Title can not be blank")
+    @Size(min = 5, max = 100, message = "Title must be between 5 and 100 characters")
     private String title;
+
+    @NotBlank(message = "Content can not be blank")
     private String content;
 
     @ManyToOne
@@ -19,6 +27,13 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "channel_id")
     private Channel channel;
+
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -58,5 +73,13 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
