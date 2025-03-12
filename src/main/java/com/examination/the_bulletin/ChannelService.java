@@ -23,6 +23,13 @@ public class ChannelService {
     public Channel getChannelById(Long channelId) {
         return channelRepository.findById(channelId).orElse(null);
     }
+    public Channel updateChannel(Long id, Channel newChannel) {
+        return channelRepository.findById(id).map(channel -> {
+            channel.setTitle(newChannel.getTitle());
+            return channelRepository.save(channel);
+        }).orElse(null);
+    }
+
     public void deleteChannel(Long channelId) {
         channelRepository.deleteById(channelId);
     }

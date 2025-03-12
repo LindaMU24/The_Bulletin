@@ -35,6 +35,16 @@ public class ChannelController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Channel> updateChannel(@PathVariable Long id, @RequestBody Channel updatedChannel) {
+        Channel channel = channelService.updateChannel(id, updatedChannel);
+        if (channel != null) {
+            return ResponseEntity.ok(channel);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @DeleteMapping("/{id}")
     public void deleteChannelById(@PathVariable Long id) {
         channelService.deleteChannel(id);
