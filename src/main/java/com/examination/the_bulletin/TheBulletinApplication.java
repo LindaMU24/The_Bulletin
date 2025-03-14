@@ -9,5 +9,4 @@ public class TheBulletinApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TheBulletinApplication.class, args);
 	}
-public String helloWorld;
 }

@@ -1,5 +1,7 @@
 package com.examination.the_bulletin;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -26,6 +28,7 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "channel_id")
+    @JsonIgnore
     private Channel channel;
 
     private LocalDateTime createdAt;
@@ -33,6 +36,9 @@ public class Post {
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
+    }
+
+    public Post() {
     }
 
     public Long getId() {

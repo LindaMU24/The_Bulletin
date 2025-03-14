@@ -30,4 +30,12 @@ public class MyExceptionHandler {
         errorResponse.put("error", exception.getMessage());
         return errorResponse;
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public Map<String, String> handleIllegalArgument(IllegalArgumentException exception) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", exception.getMessage());
+        return errorResponse;
+    }
 }

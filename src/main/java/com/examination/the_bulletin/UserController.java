@@ -2,6 +2,8 @@ package com.examination.the_bulletin;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +26,8 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public List<UserDTO> showAllUsers() {
-        return userService.getAllUserDTOs();
+    public Page<UserDTO> showAllUsers(Pageable pageable) {
+        return userService.getAllUserDTOs(pageable);
     }
 
     @GetMapping("/{id}")

@@ -15,12 +15,9 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private final UserRepository userRepo;
 
     @Autowired
-    UserRepository userRepo;
-
     public UserService(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
@@ -28,12 +25,16 @@ public class UserService {
     public User addUser(User user) {
         return userRepo.save(user);
     }
-    public List<UserDTO> getAllUserDTOs() {
-        return userRepo.findAll()
-                .stream()
-                .map(UserMapper.INSTANCE::userToUserDTO)
-                .collect(Collectors.toList());
+
+    public Page<UserDTO> getAllUserDTOs(Pageable pageable) {
+        return userRepo.findAll(pageable)
+                .map(user -> {
+                    UserDTO userDTO = UserMapper.INSTANCE.userToUserDTO(user);
+                    userDTO.setPosts(UserMapper.INSTANCE.postsToPostDTOs(user.getPosts()));
+                    return userDTO;
+                });
     }
+
     public Optional<UserDTO> getUserById(Long id) {
         return userRepo.findById(id)
                 .map(UserMapper.INSTANCE::userToUserDTO);
@@ -43,9 +44,7 @@ public class UserService {
                 .map(UserMapper.INSTANCE::userToUserDTO)
                 .collect(Collectors.toList());
     }
-//    public Page<UserDTO> getAllUserDTOs(Pageable pageable) {   //Väntar på Channel och Post
-//
-//    }
+
     public User updateUser(User newUser) {
         return userRepo.findById(newUser.getId()).map(user -> {
             user.setUsername(newUser.getUsername());
