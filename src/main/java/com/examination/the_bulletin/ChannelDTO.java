@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 public class ChannelDTO {
     private Long id;
     private String name;
-    private LocalDateTime date;
+    private LocalDateTime createdAt;
     private Long postCount;
 
-    public ChannelDTO(Long id, String name, LocalDateTime date, Long postCount) {
+    public ChannelDTO(Long id, String name, LocalDateTime createdAt, Long postCount) {
         this.id = id;
         this.name = name;
-        this.date = date;
+        this.createdAt = createdAt;
         this.postCount = postCount;
     }
 
@@ -34,12 +34,12 @@ public class ChannelDTO {
         this.name = name;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Long getPostCount() {

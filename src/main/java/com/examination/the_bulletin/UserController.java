@@ -42,7 +42,6 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserByName(username));
 
     }
-    //getAllUsers Pageable
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody User newUser) {

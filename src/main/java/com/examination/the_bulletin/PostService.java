@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +22,13 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
+
     public Post createPost(Post post) {
         if (post.getChannel() == null) {
             throw new IllegalArgumentException("The post must have a channel. Please use the correct way of making posts");
+        }
+        if (post.getCreatedAt() == null) {
+            post.setCreatedAt(LocalDateTime.now());
         }
         return postRepository.save(post);
     }

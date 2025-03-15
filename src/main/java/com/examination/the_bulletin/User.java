@@ -31,6 +31,13 @@ public class User {
     public User() {
     }
 
+    public User(Long id, String username, String email, List<Post> posts) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.posts = posts;
+    }
+
     public Long getId() {
         return id;
     }

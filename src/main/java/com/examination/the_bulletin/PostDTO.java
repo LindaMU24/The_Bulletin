@@ -6,14 +6,14 @@ public class PostDTO {
     private Long id;
     private String title;
     private String content;
-    private LocalDateTime dateTime;
+    private LocalDateTime createdAt;
     private User user;
 
-    public PostDTO(Long id, String title, String content, LocalDateTime dateTime, User user) {
+    public PostDTO(Long id, String title, String content, LocalDateTime createdAt, User user) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.dateTime = dateTime;
+        this.createdAt = createdAt;
         this.user = user;
     }
 
@@ -44,12 +44,12 @@ public class PostDTO {
         this.content = content;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public User getUser() {

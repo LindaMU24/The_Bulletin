@@ -26,14 +26,20 @@ public class UserService {
         return userRepo.save(user);
     }
 
+
     public Page<UserDTO> getAllUserDTOs(Pageable pageable) {
         return userRepo.findAll(pageable)
                 .map(user -> {
+                    user.getPosts().forEach(post -> {
+                        System.out.println("Post ID: " + post.getId() + ", CreatedAt: " + post.getCreatedAt());
+                    });
+
                     UserDTO userDTO = UserMapper.INSTANCE.userToUserDTO(user);
                     userDTO.setPosts(UserMapper.INSTANCE.postsToPostDTOs(user.getPosts()));
                     return userDTO;
                 });
     }
+
 
     public Optional<UserDTO> getUserById(Long id) {
         return userRepo.findById(id)

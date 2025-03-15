@@ -38,4 +38,12 @@ public class MyExceptionHandler {
         errorResponse.put("error", exception.getMessage());
         return errorResponse;
     }
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(UserNotFoundException.class)
+    public Map<String, String> handleUserNotFound(UserNotFoundException exception) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("error", exception.getMessage());
+        return errorResponse;
+    }
 }
+

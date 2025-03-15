@@ -54,10 +54,14 @@ public class ChannelController {
     }
 
     @PutMapping("/{channelId}/messages")
-    public ResponseEntity<?> createMessageInChannel(@PathVariable Long channelId, @RequestBody Post post) {
+    public ResponseEntity<?> createMessageInChannel(@PathVariable Long channelId, @Valid @RequestBody Post post) {
         if (post.getUser() == null || post.getUser().getId() == null) {
             return ResponseEntity.badRequest().body("Please provide your user ID.");
         }
+
+        User user = userRepository.findById(post.getUser().getId())
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+        post.setUser(user);
 
         Optional<Channel> channelOptional = channelRepository.findById(channelId);
         if (!channelOptional.isPresent()) {

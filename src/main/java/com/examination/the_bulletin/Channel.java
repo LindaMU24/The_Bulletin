@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class Channel {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Title can not be blank")
