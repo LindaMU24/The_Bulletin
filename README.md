@@ -27,8 +27,11 @@ Create new user with POST using the Base-URL followed by /users.
 Body(JSON) example:
 
 {
+
 "username": "John Doe",
+
 "email": "john.doe@example.com"
+
 }
 
 Channel:
@@ -38,7 +41,9 @@ Create new channel with POST using the Base-URL followed by /channels.
 Body(JSON) example:
 
 {
+
 "title": "Computers & It"
+
 }
 
 Posts:
@@ -49,10 +54,15 @@ The {id} should be replaced by the given id of the channel, e.g. 1.
 Body(JSON) example:
 
 {
+
 "title": "The best computer for programming?",
+
 "content": "I'm considering buying a new computer for programming. Would a Laptop or a stationary be best?",
+
 "user": {
+
 "id": 1
+
 }
 }
 
@@ -102,8 +112,11 @@ The {id} should be replaced by the given id of the user, e.g. 1.
 Body(JSON) example:
 
 {
+
 "username": "John Doe",
+
 "email": "johnny@example.com"
+
 }
 
 Channels:
@@ -114,7 +127,9 @@ The {id} should be replaced by the given id of the channel, e.g. 1.
 Body(JSON) example:
 
 {
+
 "title": "Computers"
+
 }
 
 Posts:
@@ -125,8 +140,11 @@ The {id} should be replaced by the given id of the channel, e.g. 1.
 Body (JSON) example:
 
 {
+
 "title": "The best computer for programming?",
+
 "content": "Would a Laptop or a stationary be best?"
+
 }
 
 **Delete**
